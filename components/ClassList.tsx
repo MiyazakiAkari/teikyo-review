@@ -1,6 +1,7 @@
 // components/ClassList.tsx
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { StarRating } from "./StarRating";
 
 export default async function ClassList() {
   const { data: classes } = await supabase
@@ -66,11 +67,12 @@ export default async function ClassList() {
               {/* レビュー平均と件数 */}
               <div className="flex items-center gap-4 text-sm">
                 {item.avgRating ? (
-                  <div className="flex items-center gap-1">
-                    <span>⭐</span>
-                    <span className="text-gray-900 font-semibold">
-                      {item.avgRating}
-                    </span>
+                  <div className="flex items-center gap-2">
+                    <StarRating
+                      rating={parseFloat(item.avgRating)}
+                      size="w-4 h-4"
+                      showLabel={true}
+                    />
                     <span className="text-gray-500">/ 5.0</span>
                   </div>
                 ) : (

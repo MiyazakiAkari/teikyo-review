@@ -2,6 +2,11 @@ import { supabase } from "@/lib/supabase";
 import { createClient } from "@/utils/supabase/server";
 import { addReview } from "@/app/actions";
 import Link from "next/link";
+import {
+  StarRating,
+  StarIcon,
+  SimpleStarDisplay,
+} from "@/components/StarRating";
 
 export default async function ClassDetailPage({
   params,
@@ -84,13 +89,13 @@ export default async function ClassDetailPage({
             </div>
             {avgRating && (
               <div className="flex items-center gap-2">
-                <span>⭐</span>
-                <span>
-                  平均評価:{" "}
-                  <span className="text-gray-900 font-semibold">
-                    {avgRating} / 5.0
-                  </span>
-                </span>
+                <span>平均評価: </span>
+                <StarRating
+                  rating={parseFloat(avgRating)}
+                  size="w-5 h-5"
+                  showLabel={true}
+                />
+                <span className="text-gray-600">/ 5.0</span>
               </div>
             )}
           </div>
@@ -193,10 +198,10 @@ export default async function ClassDetailPage({
                         </div>
                         <div>
                           <div className="font-semibold text-lg text-gray-900">
-                            {"⭐".repeat(Math.floor(review.rating || 0))}
-                            {review.rating && review.rating % 1 !== 0
-                              ? "✨"
-                              : ""}
+                            <SimpleStarDisplay
+                              rating={review.rating || 0}
+                              size="w-4 h-4"
+                            />
                           </div>
                           <p className="text-gray-500 text-sm">
                             {new Date(review.created_at).toLocaleDateString(
