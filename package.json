@@ -8,11 +8,19 @@
     "start": "next start",
     "lint": "eslint",
     "create-test-user": "node scripts/create-test-user.js",
-    "test-user-guide": "node scripts/test-user-guide.js"
+    "test-user-guide": "node scripts/test-user-guide.js",
+    "admin-list": "node scripts/admin-manage.js list",
+    "admin-promote": "node scripts/admin-manage.js promote",
+    "admin-revoke": "node scripts/admin-manage.js revoke",
+    "setup-admin": "node scripts/setup-admin.js",
+    "fix-rls": "node scripts/fix-rls-policy.js",
+    "register-profiles": "node scripts/register-profiles.js",
+    "clear-data": "node scripts/clear-data.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.95.3",
+    "dotenv": "^17.2.4",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
