@@ -2,7 +2,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { addClass } from "./actions";
 import { isUserAdmin } from "@/lib/admin";
-import ClassList from "@/components/ClassList";
+import ClassListSearch from "@/components/ClassListSearch";
 import Link from "next/link";
 
 export default async function Home() {
@@ -140,7 +140,7 @@ export default async function Home() {
               <span className="text-3xl">📚</span>
               登録済み授業一覧
             </h2>
-            <ClassList />
+            <ClassListSearch />
           </div>
         </div>
       </div>
