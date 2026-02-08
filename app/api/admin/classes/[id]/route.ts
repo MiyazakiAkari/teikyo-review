@@ -1,0 +1,62 @@
+import { createClient } from "@supabase/supabase-js";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 },
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // リクエストボディからユーザー ID を取得
+    const { userId } = await request.json();
+
+    if (!userId) {
+      return NextResponse.json(
+        { error: "User ID is required" },
+        { status: 400 },
+      );
+    }
+
+    // Admin 権限を確認
+    const { data: userProfile } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", userId)
+      .single();
+
+    if (!userProfile?.is_admin) {
+      return NextResponse.json(
+        { error: "Admin rights required" },
+        { status: 403 },
+      );
+    }
+
+    // クラスを削除（カスケード削除により関連するレビューも削除される）
+    const { error } = await supabase
+      .from("classes")
+      .delete()
+      .eq("id", id);
+
+    if (error) throw error;
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Delete class error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete class" },
+      { status: 500 },
+    );
+  }
+}

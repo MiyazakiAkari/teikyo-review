@@ -1,6 +1,7 @@
 // app/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { addClass } from "./actions";
+import { isUserAdmin } from "@/lib/admin";
 import ClassList from "@/components/ClassList";
 import Link from "next/link";
 
@@ -9,6 +10,7 @@ export default async function Home() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const isAdmin = user ? await isUserAdmin() : false;
   return (
     <main className="min-h-screen bg-white">
       {/* ヘッダー */}
@@ -23,6 +25,14 @@ export default async function Home() {
                   <span>👤</span>
                   <span>{user.email}</span>
                 </div>
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="px-3 py-1.5 text-sm text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 rounded-lg transition font-medium"
+                  >
+                    👑 管理画面
+                  </Link>
+                )}
                 <form
                   action={async () => {
                     "use server";
