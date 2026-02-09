@@ -67,7 +67,10 @@ export default function AdminReviewManagement() {
             }));
           }
         } catch (err) {
-          console.warn("Failed to fetch profiles, continuing without email:", err);
+          console.warn(
+            "Failed to fetch profiles, continuing without email:",
+            err,
+          );
           reviewsWithEmail = reviewsData.map((review) => ({
             ...review,
             profiles: { email: "不明" },
@@ -90,7 +93,8 @@ export default function AdminReviewManagement() {
       setReviews(reviewsWithEmail);
     } catch (error) {
       console.error("Error fetching data:", error);
-      const errorMessage = error instanceof Error ? error.message : "不明なエラーが発生しました";
+      const errorMessage =
+        error instanceof Error ? error.message : "不明なエラーが発生しました";
       setMessage({
         type: "error",
         text: `レビュー一覧の読み込みに失敗しました: ${errorMessage}`,
