@@ -8,6 +8,9 @@ import {
   SimpleStarDisplay,
 } from "@/components/StarRating";
 
+// キャッシュ設定: 60秒ごとに再検証
+export const revalidate = 60;
+
 export default async function ClassDetailPage({
   params,
 }: {
@@ -19,19 +22,20 @@ export default async function ClassDetailPage({
     data: { user },
   } = await sb.auth.getUser();
 
-  // 1. 授業情報の取得
-  const { data: classData } = await supabase
+  // 1. 授業情報とレビューを1つのクエリで取得（N+1回避）
+  const { data: classData, error: classError } = await supabase
     .from("classes")
-    .select("*")
+    .select("*, reviews(id, rating, body, created_at)")
     .eq("id", id)
     .single();
 
-  // 2. レビュー一覧の取得
-  const { data: reviews } = await supabase
-    .from("reviews")
-    .select("*")
-    .eq("class_id", id)
-    .order("created_at", { ascending: false });
+  // エラーログ出力
+  if (classError) {
+    console.error("Class fetch error:", classError);
+  }
+
+  // レビューは classData に含まれています
+  const reviews = (classData?.reviews as any[]) || [];
   if (!classData) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -40,9 +44,22 @@ export default async function ClassDetailPage({
           <h1 className="text-2xl font-bold mb-2 text-gray-900">
             授業が見つかりません
           </h1>
+          <p className="text-gray-600 mb-4">ID: {id}</p>
+          {classError && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-left max-w-md mx-auto">
+              <p className="text-sm font-mono text-red-700">
+                エラー: {classError.message}
+              </p>
+              {classError.code && (
+                <p className="text-xs text-red-600 mt-2">
+                  コード: {classError.code}
+                </p>
+              )}
+            </div>
+          )}
           <Link
             href="/"
-            className="text-blue-600 hover:text-blue-700 transition"
+            className="inline-block text-blue-600 hover:text-blue-700 transition font-semibold"
           >
             ← 一覧に戻る
           </Link>
