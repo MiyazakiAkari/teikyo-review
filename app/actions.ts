@@ -2,6 +2,7 @@
 
 import { supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
+import { createClient } from "@/utils/supabase/server";
 
 export async function addClass(formData: FormData) {
     const name = formData.get('name') as string;
@@ -30,6 +31,14 @@ export async function addReview(formData: FormData) {
         throw new Error('レビュー内容は必須です');
     }
 
+    // ユーザー認証情報を取得
+    const supabaseServer = await createClient();
+    const { data: { user } } = await supabaseServer.auth.getUser();
+
+    if (!user) {
+        throw new Error('ログインが必要です');
+    }
+
     const { error } = await supabase.from('reviews').insert({
         class_id: classId,
         body,
@@ -42,4 +51,5 @@ export async function addReview(formData: FormData) {
     }
 
     revalidatePath(`/classes/${classId}`);
+    revalidatePath('/', 'layout');
 }
