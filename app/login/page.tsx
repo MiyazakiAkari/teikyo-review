@@ -25,7 +25,7 @@ export default async function LoginPage({
           >
             <div className="border-t-4 border-red-500 p-6">
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
                     <svg
                       className="h-6 w-6 text-red-600"
@@ -58,7 +58,7 @@ export default async function LoginPage({
               <div className="mt-6 flex gap-3">
                 <Link
                   href="/login"
-                  className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg text-center transition"
+                  className="flex-1 px-4 py-2 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg text-center transition"
                 >
                   再度試す
                 </Link>
@@ -86,7 +86,7 @@ export default async function LoginPage({
         <div className="w-full max-w-md">
           {/* ヘッダー */}
           <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+            <h1 className="text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
               帝京通信
             </h1>
             <p className="text-gray-600">ログイン / 新規登録</p>
@@ -111,7 +111,7 @@ export default async function LoginPage({
                     required
                     className="flex-1 px-4 py-3 bg-transparent text-gray-900 placeholder:text-gray-400 focus:outline-none"
                   />
-                  <span className="px-4 py-3 text-gray-500 font-medium pointer-events-none whitespace-nowrap">
+                  <span className="px-2 sm:px-4 py-3 text-xs sm:text-sm text-gray-500 font-medium pointer-events-none whitespace-nowrap">
                     @stu.teikyo-u.ac.jp
                   </span>
                 </div>
@@ -140,7 +140,7 @@ export default async function LoginPage({
               <div className="flex flex-col gap-3 mt-6">
                 <button
                   formAction={login}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+                  className="w-full bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
                 >
                   ログイン
                 </button>

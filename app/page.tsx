@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-white">
       {/* ヘッダー */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+      <div className="relative overflow-hidden bg-linear-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
         {/* ナビゲーション */}
         <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div></div>
@@ -28,7 +28,7 @@ export default async function Home() {
                 {isAdmin && (
                   <Link
                     href="/admin"
-                    className="px-3 py-1.5 text-sm text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 rounded-lg transition font-medium"
+                    className="px-3 py-1.5 text-sm text-white bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 rounded-lg transition font-medium"
                   >
                     👑 管理画面
                   </Link>
@@ -55,7 +55,7 @@ export default async function Home() {
                 </Link>
                 <Link
                   href="/login"
-                  className="px-4 py-2 text-sm text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition"
+                  className="px-4 py-2 text-sm text-white bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition"
                 >
                   新規登録
                 </Link>
@@ -66,7 +66,7 @@ export default async function Home() {
 
         {/* メインコンテンツ */}
         <div className="px-4 sm:px-6 lg:px-8 pt-8 pb-20 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 bg-linear-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
             帝京通信
             <br className="hidden sm:block" /> 授業レビュー
           </h1>
@@ -110,7 +110,7 @@ export default async function Home() {
                   </div>
                   <button
                     type="submit"
-                    className="mt-4 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+                    className="mt-4 w-full bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
                   >
                     + 授業を登録
                   </button>
@@ -126,7 +126,7 @@ export default async function Home() {
                   </p>
                   <Link
                     href="/login"
-                    className="w-full block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition text-center"
+                    className="w-full block bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition text-center"
                   >
                     ログインする
                   </Link>
