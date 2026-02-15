@@ -89,7 +89,7 @@ export default async function ClassDetailPage({
       </div>
 
       {/* ヘッダー */}
-      <div className="px-4 sm:px-6 lg:px-8 py-8 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div className="px-4 sm:px-6 lg:px-8 py-8 border-b border-gray-200 bg-linear-to-r from-blue-50 to-indigo-50">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900">
             {classData.name}
@@ -164,7 +164,7 @@ export default async function ClassDetailPage({
 
                   <button
                     type="submit"
-                    className="w-full mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+                    className="w-full mt-4 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
                   >
                     💬 投稿する
                   </button>
@@ -180,7 +180,7 @@ export default async function ClassDetailPage({
                   </p>
                   <Link
                     href="/login"
-                    className="w-full block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition text-center"
+                    className="w-full block bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition text-center"
                   >
                     ログインする
                   </Link>
@@ -210,7 +210,7 @@ export default async function ClassDetailPage({
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-white">
+                        <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-white">
                           {review.rating}
                         </div>
                         <div>

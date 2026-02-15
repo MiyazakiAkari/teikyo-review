@@ -9,6 +9,14 @@ export default function ClassListSearch() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Hydration 完了後に状態を初期化
+  useEffect(() => {
+    setIsHydrated(true);
+    // 初回フェッチを実行
+    fetchClasses("");
+  }, []);
 
   // デバウンス処理（500ms の遅延）
   useEffect(() => {
@@ -43,8 +51,20 @@ export default function ClassListSearch() {
 
   // デバウンスされたクエリが変更されたら検索
   useEffect(() => {
-    fetchClasses(debouncedQuery);
-  }, [debouncedQuery, fetchClasses]);
+    if (isHydrated && debouncedQuery !== "") {
+      fetchClasses(debouncedQuery);
+    }
+  }, [debouncedQuery, fetchClasses, isHydrated]);
+
+  // Hydration 完了までは何も表示しない
+  if (!isHydrated) {
+    return (
+      <div className="text-center py-12">
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <p className="text-gray-600 mt-4">読み込み中...</p>
+      </div>
+    );
+  }
 
   return (
     <div>

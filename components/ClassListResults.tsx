@@ -43,7 +43,7 @@ export default function ClassListResults({
         <Link
           key={item.id}
           href={`/classes/${item.id}`}
-          className="group bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition duration-300 shadow-sm hover:shadow-lg transform hover:-translate-y-1"
+          className="group bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-lg transition duration-300 shadow-sm transform hover:-translate-y-1"
         >
           <div className="flex flex-col h-full">
             <div className="flex-1">

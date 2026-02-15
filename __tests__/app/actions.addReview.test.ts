@@ -58,7 +58,6 @@ describe('addReview Action', () => {
         class_id: mockClass.id,
         body: 'この授業は面白い！',
         rating: 5,
-        user_id: mockUser.id,
       });
 
       expect(revalidatePath).toHaveBeenCalledWith(`/classes/${mockClass.id}`);
@@ -92,7 +91,6 @@ describe('addReview Action', () => {
         class_id: mockClass.id,
         body: 'このクラス良かった',
         rating: null,
-        user_id: mockUser.id,
       });
     });
   });
